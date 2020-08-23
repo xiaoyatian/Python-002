@@ -6,14 +6,14 @@
 
 # useful for handling different item types with a single interface
 #from itemadapter import ItemAdapter
-
+import csv
 
 class SpidersPipeline:
     def process_item(self, item, spider):
         title = item['title']
         movie_type = item['movie_type']
         release_date = item['release_date']
-        output = f'|{title}|\t|{movie_type}|\t|{release_date}|\n\n'
-        with open('./doubanmovie.txt', 'a+', encoding='utf-8') as article:
+        output = f'{title},{movie_type},{release_date}\n\n'
+        with open('./doubanmovie.csv', 'a+', encoding='utf-8') as article:
             article.write(output)
         return item
